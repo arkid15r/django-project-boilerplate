@@ -12,3 +12,9 @@ django-crispy-forms==1.13.0
 
 # https://django-environ.readthedocs.io/en/stable/
 django-environ==0.8.1
+
+# https://django-tables2.readthedocs.io/en/stable/
+django-tables2
+
+# https://github.com/skorokithakis/shortuuid
+shortuuid==1.0.8

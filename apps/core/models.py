@@ -1,8 +1,8 @@
 """Core models."""
-
-import uuid
-
+from django.conf import settings
 from django.db import models
+
+from shortuuid.django_fields import ShortUUIDField
 
 
 class TimestampModel(models.Model):
@@ -20,15 +20,10 @@ class TimestampModel(models.Model):
 class UIDModel(models.Model):
   """UID model."""
 
-  uid = models.UUIDField(unique=True, blank=True, null=False)
-
-  def save(self, *args, **kwargs):
-    """Set uid on save."""
-
-    if not self.uid:
-      self.uid = uuid.uuid4()
-
-    return super(UIDModel, self).save(*args, **kwargs)
+  uid = ShortUUIDField(alphabet=settings.SHORT_UUID_ALPHABET,
+                       length=settings.SHORT_UUID_LENGTH,
+                       max_length=40,
+                       primary_key=True)
 
   class Meta:
     """UID model meta."""
